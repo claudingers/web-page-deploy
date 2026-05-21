@@ -41,3 +41,24 @@ data:
   CHAVE_3: "valor_3"
   CHAVE_4: "valor_4"
   CHAVE_5: "valor_5"
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webpage-ingress
+  namespace: apps
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx # Define qual Ingress Controller vai gerenciar esta regra
+  rules:
+  - host: webpage.zephyrus.local # O domínio que você vai acessar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: webpage # O nome do Service criado anteriormente
+            port:
+              number: 80  # A porta do seu Service
