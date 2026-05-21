@@ -61,4 +61,4 @@ spec:
           service:
             name: webpage # O nome do Service criado anteriormente
             port:
-              number: 80  # A porta do seu Service
+              number: 8081  # A porta do seu Service
